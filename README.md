@@ -1,12 +1,12 @@
 ## Tasker
 
-Tasker is a web application built using Laravel framework to create your task
+Tasker is a web application built using Laravel & Vue to create your task
 
 ## Configuration
 
 Create the 'tasker' database,
 
-and then change your database configuration on .env:
+and then change your .env database configuration:
 
 ```env
 DB_CONNECTION=mysql
