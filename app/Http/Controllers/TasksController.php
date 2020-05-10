@@ -70,7 +70,11 @@ class TasksController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $data = [
+            'completed' => !$task->completed
+        ];
+
+        return Task::where('id', $task->id)->update($data);
     }
 
     /**
@@ -81,6 +85,6 @@ class TasksController extends Controller
      */
     public function destroy(Task $task)
     {
-        Task::destroy($task->id);
+        return Task::destroy($task->id);
     }
 }

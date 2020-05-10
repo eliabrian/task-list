@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'TasksController@index');
 Route::delete('/tasks/{task}', 'TasksController@destroy');
+Route::patch('/tasks/{task}', 'TasksController@update');
 
