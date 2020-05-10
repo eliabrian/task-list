@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'TasksController@index');
+Route::delete('/tasks/{task}', 'TasksController@destroy');
 
