@@ -14,7 +14,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('created_at', 'DESC')->get();
         return view('home', compact('tasks'));
     }
 
@@ -25,7 +25,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -36,7 +36,20 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'task' => 'required|string|max:255',
+            'completed' => 'boolean',
+        ];
+
+        $request->validate($rules);
+
+        $data = [
+            'task' => $request->task,
+            'completed' => 0,
+        ];
+
+        Task::create($data);
+        return redirect('/')->with('message', 'Task created!');
     }
 
     /**
