@@ -1,6 +1,4 @@
-<p align="center">##Tasker</p>
-
-## About Tasker
+##Tasker
 
 Tasker is a web application built using Laravel framework to create your task
 
