@@ -35,6 +35,12 @@ Run seed
 php artisan db:seed
 ```
 
+Compile Assets
+
+```js
+npm install && npm run watch
+```
+
 Run the server
 
 ```php
