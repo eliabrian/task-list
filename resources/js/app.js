@@ -21,7 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/Navbar.vue').default);
-Vue.component('list', require('./components/List.vue').default);
+Vue.component('task', require('./components/Task.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

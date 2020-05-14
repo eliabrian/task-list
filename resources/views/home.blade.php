@@ -4,7 +4,7 @@
 @section('content')
 
 {{-- Create Card --}}
-<div class="card border-0 shadow my-5">
+<div class="card border-0 shadow my-4">
 
     <div class="card-header">
         <h3><i class="fas fa-plus"></i> Create Task</h3>
@@ -26,37 +26,13 @@
 
 </div>
 
-{{-- Task List Card --}}
-<div class="card border-0 shadow my-5">
-
-    <div class="card-header">
-        <h3><i class="fas fa-clipboard-list"></i> Task List</h3>
-    </div>
-    <div class="card-body">
-        @if(session('message'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{session('message')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+<ul class="list-group">
+    <div class="card border-0 shadow">
+        <div class="card-header">
+            <h3><i class="fas fa-clipboard-list"></i> Task List</h3>
         </div>
-        @endif
-
-        <ul class="list-group">
-            @if($tasks->count() != 0)
-            @foreach ($tasks as $task)
-            <list v-bind:key="{{$task->id}}" v-bind:tasks="{{$task}}"></list>
-            @endforeach
-            @else
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center justify-content-center w-100">
-                    <p class="m-0">Your task is empty.</p>
-                </div>
-            </li>
-            @endisset
-        </ul>
+        <task></task>
     </div>
-
-</div>
+</ul>
 
 @endsection

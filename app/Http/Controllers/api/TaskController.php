@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
-use App\Task;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Task;
+use App\Http\Resources\Task as TaskResource;
+use Illuminate\Support\Facades\Http;
 
-
-
-class TasksController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,8 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $tasks = Task::orderBy('created_at', 'DESC')->get();
+        return TaskResource::collection($tasks);
     }
 
     /**
@@ -37,29 +39,16 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'task' => 'required|string|max:255',
-            'completed' => 'boolean',
-        ];
-
-        $request->validate($rules);
-
-        $data = [
-            'task' => $request->task,
-            'completed' => 0,
-        ];
-
-        Task::create($data);
-        return redirect('/')->with('message', 'Task created!');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($id)
     {
         //
     }
@@ -67,34 +56,41 @@ class TasksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
-        //
+        // 
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->completed = !$task->completed;
+        if($task->save()){
+            return  new TaskResource($task);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task  $task
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        if($task->delete()){
+            return new TaskResource($task);
+        }
     }
 }
