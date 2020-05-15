@@ -39,7 +39,20 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'task' => 'required|string|max:255',
+            'completed' => 'boolean',
+        ];
+
+        $request->validate($rules);
+
+        $data = [
+            'task' => $request->task,
+            'completed' => 0,
+        ];
+
+        $task = Task::create($data);
+        return new TaskResource($task);
     }
 
     /**

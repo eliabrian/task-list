@@ -49,9 +49,9 @@ export default {
       fetch("api/tasks")
         .then(res => res.json())
         .then(res => {
-          console.log(res.data);
           this.tasks = res.data;
-        });
+        })
+        .catch(err => console.log(err));
     },
 
     deleteTask(id) {
@@ -61,7 +61,8 @@ export default {
         .then(res => res.json())
         .then(data => {
           this.fetchTasks();
-        });
+        })
+        .catch(err => console.log(err));
     },
 
     completeTask(id) {

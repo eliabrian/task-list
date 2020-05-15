@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/Navbar.vue').default);
 Vue.component('task', require('./components/Task.vue').default);
+Vue.component('task-form', require('./components/Form.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

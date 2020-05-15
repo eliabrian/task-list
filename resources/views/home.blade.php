@@ -10,18 +10,7 @@
         <h3><i class="fas fa-plus"></i> Create Task</h3>
     </div>
     <div class="card-body">
-        <form action="/tasks" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="task" class="@error('task') is-invalid @enderror">Task</label>
-                <input type="text" name="task" id="task" class="form-control @error('task')is-invalid @enderror"
-                    value="{{old('task')}}">
-                @error('task')
-                <div class="invalid-feedback">{{$message}}</div>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Add Task!</button>
-        </form>
+        <task-form></task-form>
     </div>
 
 </div>
